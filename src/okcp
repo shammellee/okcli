@@ -1,0 +1,85 @@
+#!/usr/bin/env awk -f
+
+BEGIN{
+	statsRegex     = "Navigation\.init"
+	# favoritesRegex = "<h[1-6].*\/ul>"
+	# favoritesRegex = "<h[1-6][^>]*>[^<]*<\/h[1-6]>[^<]*<ul[^>]*>[^<]*<li[^<]+[^<]+<span[^<]+[^>]+[^<]+<a[^>]+>[^<]+</a>[^<]*</li"
+	# favoritesRegex = "<h[1-6][^>]*>.*<\/ul>"
+	# favoritesRegex = "<h[1-6][^>]*>[^fF]*[fF]"
+	favoritesRegex = "<h[1-6][^>]*>[^fF]*[fF]avorite[^<]*<.*favorite[^\"]+\">[^<]+<\/a>[^<]*<\/li>[^<]*<\/ul>"
+	properties[1]  = "mailbox"
+	properties[2]  = "visitors"
+	properties[3]  = "ratings"
+	properties[4]  = "matches"
+	properties[5]  = "cbd"
+	properties[6]  = "events"
+
+	for(p in properties)
+	{
+		len = length(properties[p])
+
+		if(max < len)
+		{
+			max = len
+		}
+
+		numProperties++
+	}
+}
+
+#statsRegex,favoritesRegex
+#$0 ~ statsRegex,$0 ~ favoritesRegex
+
+{
+	if($0 ~ statsRegex)
+	{
+		for(i = 1;i < numProperties;i++)
+		{
+			p     = properties[i]
+			regex = p"[^:]*:[^{]*\{\s*[^c]+?count[^:]+:\s*.[0-9]+"
+
+			if(match($0,regex))
+			{
+				str = substr($0,RSTART,RLENGTH)
+				if(match(str,/[0-9]+$/))
+				{
+					if(p ~ /^mailbox$/)
+					{
+						p = "messages"
+					}
+
+					label = toupper(substr(p,1,1))substr(p,2)
+					value = substr(str,RSTART,RLENGTH)
+					printf "%"max"s %d\n",label,value
+				}
+			}
+		}
+
+		print ""
+		FS = "<\/a>[^<]*</li>"
+		next
+	}
+
+	if(match($0,favoritesRegex))
+	{
+		OFS             = "\n"
+		faveNameRegex1  = "favorites_sidebar\">.+$"
+		faveNameRegex2  = "[^>]+$"
+
+		print "ONLINE FAVORITES"
+
+		for(i = 1;i < NF;i++)
+		{
+			if(match($i,faveNameRegex1))
+			{
+				str = substr($i,RSTART,RLENGTH)
+
+				if(match(str,faveNameRegex2))
+				{
+					print substr(str,RSTART,RLENGTH)
+				}
+			}
+		}
+		next
+	}
+}
