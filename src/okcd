@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 okcUrl='https://www.okcupid.com/login'
-cookieDir="okc_cookies"
+cookieDir="${OKC_PATH}/.okc_cookies"
 cookies='cookies.txt'
 
 [ -d "$cookieDir" ] || mkdir "$cookieDir"

@@ -12,11 +12,7 @@ char* okc_cmd(char *path, const int update_interval);
 
 int main()
 {
-	//string okc_user;
-	//string okc_pass;
-	//string okc_dir;
-
-	char *ptr_user(getenv("OKC_USER"));
+	char *ptr_pass(getenv("OKC_USER"));
 	char *ptr_pass(getenv("OKC_PASS"));
 	char *ptr_path(getenv("OKC_PATH"));
 

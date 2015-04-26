@@ -14,5 +14,5 @@ $(EXECUTABLE): clean
 	@echo '$(EXECUTABLE) successfully built'
 
 clean:
-	@rm -rf $(BUILD_DIR)
+	@rm -rf $(BUILD_DIR) .okc_cookies
 	@echo 'Project clean'
