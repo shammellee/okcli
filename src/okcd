@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 okcUrl='https://www.okcupid.com/login'
 cookieDir="${OKC_PATH}/.okc_cookies"
 cookies='cookies.txt'
