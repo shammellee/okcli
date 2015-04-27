@@ -1,18 +1,19 @@
 .PHONY = $(EXECUTABLE) clean
 SHELL  = /bin/bash
 
-EXECUTABLE := okc
-SOURCE_DIR := src
-BUILD_DIR  := $(EXECUTABLE)
+PROJECT_NAME = $(EXECUTABLE)cli
+EXECUTABLE   := ok
+SOURCE_DIR   := src
+BUILD_DIR     = $(PROJECT_NAME)
 
 #all: $(EXECUTABLE)
 
 $(EXECUTABLE): clean
 	@mkdir $(BUILD_DIR)
-	@cp $(SOURCE_DIR)/$@d $(SOURCE_DIR)/$@p $(BUILD_DIR)/
+	@cp $(SOURCE_DIR)/$@login $(SOURCE_DIR)/$@stats $(BUILD_DIR)/
 	@g++ -o $(BUILD_DIR)/$@ src/$@.cpp 
-	@echo '$(EXECUTABLE) successfully built'
+	@echo '$(PROJECT_NAME) successfully built'
 
 clean:
-	@rm -rf $(BUILD_DIR) .okc_cookies
+	@rm -rf $(BUILD_DIR)
 	@echo 'Project clean'
