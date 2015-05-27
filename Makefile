@@ -11,7 +11,7 @@ BUILD_DIR     = $(PROJECT_NAME)
 $(EXECUTABLE): clean
 	@mkdir $(BUILD_DIR)
 	@cp $(SOURCE_DIR)/$@login $(SOURCE_DIR)/$@stats $(BUILD_DIR)/
-	@g++ -o $(BUILD_DIR)/$@ src/$@.cpp 
+	@$(CXX) -o $(BUILD_DIR)/$@ src/$@.cpp
 	@echo '$(PROJECT_NAME) successfully built'
 
 clean:

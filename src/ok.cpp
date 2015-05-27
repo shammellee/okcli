@@ -1,4 +1,5 @@
 #include <iostream>  /* cout */
+#include <cstdio>    /* sprintf */
 #include <stdlib.h>  /* getenv */
 
 #define OKCLI_USER "OKCLI_USER"

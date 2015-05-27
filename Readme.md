@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/shammellee/okcli.svg)](https://travis-ci.org/shammellee/okcli)
+
 ![okcli](src/img/okcli_logo.png)
 
 view your [okcupid][okcupidURL] stats from the command line
