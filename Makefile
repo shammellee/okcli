@@ -6,8 +6,6 @@ EXECUTABLE   := ok
 SOURCE_DIR   := src
 BUILD_DIR     = $(PROJECT_NAME)
 
-#all: $(EXECUTABLE)
-
 $(EXECUTABLE): clean
 	@mkdir $(BUILD_DIR)
 	@cp $(SOURCE_DIR)/$@login $(SOURCE_DIR)/$@stats $(BUILD_DIR)/

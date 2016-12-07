@@ -2,10 +2,6 @@
 
 BEGIN{
 	statsRegex     = "Navigation\.init"
-	# favoritesRegex = "<h[1-6].*\/ul>"
-	# favoritesRegex = "<h[1-6][^>]*>[^<]*<\/h[1-6]>[^<]*<ul[^>]*>[^<]*<li[^<]+[^<]+<span[^<]+[^>]+[^<]+<a[^>]+>[^<]+</a>[^<]*</li"
-	# favoritesRegex = "<h[1-6][^>]*>.*<\/ul>"
-	# favoritesRegex = "<h[1-6][^>]*>[^fF]*[fF]"
 	favoritesRegex = "<h[1-6][^>]*>[^fF]*[fF]avorite[^<]*<.*favorite[^\"]+\">[^<]+<\/a>[^<]*<\/li>[^<]*<\/ul>"
 	properties[1]  = "mailbox"
 	properties[2]  = "visitors"
@@ -26,9 +22,6 @@ BEGIN{
 		numProperties++
 	}
 }
-
-#statsRegex,favoritesRegex
-#$0 ~ statsRegex,$0 ~ favoritesRegex
 
 {
 	if($0 ~ statsRegex)
