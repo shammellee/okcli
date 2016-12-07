@@ -11,7 +11,7 @@ view your [okcupid][okcupidURL] stats from the command line
 * **Start Date** Sat Aug 2 17:53:37 EDT 2014
 
 # Dependencies
-* awk (you most-likely have this on your machine, run `$ which awk` to test if you do)
+* awk (available on most unix-based machines, run `$ which awk` to test if awk is available)
 * [curl][curlURL]
 
 # Building okcli
@@ -39,7 +39,7 @@ view your [okcupid][okcupidURL] stats from the command line
 
 	$ export PATH=$PATH:$OKCLI_PATH
 
-## Running okcli
+# Running okcli
 	$ ok
 
 [companyURL]: http://karbonindustri.es
