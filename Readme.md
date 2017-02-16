@@ -15,32 +15,37 @@ view your [okcupid][okcupidURL] stats from the command line
 * [curl][curlURL]
 
 # Building okcli
-	$ make
+```bash
+$ make
+```
 
 # Setting up okcli
 
 ## Setting environment variables
-	$ export OKCLI_USER=<username>
-	$ export OKCLI_PASS=<password>
-	$ export OKCLI_PATH=<okcliPath> # absolute path excluding trailing forward slash
+```bash
+$ export OKCLI_USER=<username>
+$ export OKCLI_PASS=<password>
+$ export OKCLI_PATH=<okcliPath> # absolute path excluding trailing forward slash
 
-	# example
-	$ export OKCLI_USER=okcli_user
-	$ export OKCLI_PASS=volcano123
-	$ export OKCLI_PATH=/Users/magneto/bin/okcli # okcli is the directory that contains the ok, okclogin, and okcstats files
+# example
+$ export OKCLI_USER=okcli_user
+$ export OKCLI_PASS=volcano123
+$ export OKCLI_PATH=/Users/magneto/bin/okcli # okcli is the directory that contains the ok, okclogin, and okcstats files
+```
 
 ### Adding okcli to `$PATH` (optional but recommended)
-	add okcli's path to your PATH environment variable.
-	this allows running okcli without having to specify
-	okcli's path every time it is run
+Add okcli's path to your PATH environment variable. This allows running okcli
+without having to specify okcli's path every time it is run. This should have
+the same value as the `OKCLI_PATH` environment variable.
 
-	this should have the same value as
-	the OKCLI_PATH environment variable
-
-	$ export PATH=$PATH:$OKCLI_PATH
+```bash
+$ export PATH=$PATH:$OKCLI_PATH
+```
 
 # Running okcli
-	$ ok
+```bash
+$ ok
+```
 
 [companyURL]: http://karbonindustri.es
 [authorURL]: https://github.com/shammellee
