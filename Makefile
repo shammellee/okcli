@@ -12,6 +12,9 @@ $(EXECUTABLE): clean
 	@$(CXX) -o $(BUILD_DIR)/$@ src/$@.cpp
 	@echo '$(PROJECT_NAME) successfully built'
 
+config:
+	@$(BUILD_DIR)/okconfig
+
 clean:
 	@rm -rf $(BUILD_DIR)
 	@echo 'Project clean'

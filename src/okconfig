@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+set -e
+
+echo -e '\e[33mThis tool will create a config file to sign into OkCupid\e[39m'
+echo -n 'Enter your username: '
+read _user
+echo -n 'Enter your password: '
+read -s _pass
+
+_okcli_path="$(cd "$(dirname $0)"; pwd -P)"
+_config_file="${HOME}/.okcli"
+
+# Remove old config file, if one exists
+rm -f "$_config_file"
+
+# Write new config file
+cat > "$_config_file" <<EOL
+export OKCLI_USER=${_user}
+export OKCLI_PASS=${_pass}
+export OKCLI_PATH=${_okcli_path}
+EOL
+
+# Make config file readable only by owner
+chmod 0400 "$_config_file"
+
+echo -e "\n\e[32mConfig file created at ${_config_file}\e[39m"
