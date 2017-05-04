@@ -1,78 +1,58 @@
 #!/usr/bin/env awk -f
 
 BEGIN{
-	statsRegex     = "Navigation\.init"
-	favoritesRegex = "<h[1-6][^>]*>[^fF]*[fF]avorite[^<]*<.*favorite[^\"]+\">[^<]+<\/a>[^<]*<\/li>[^<]*<\/ul>"
-	properties[1]  = "mailbox"
-	properties[2]  = "visitors"
-	properties[3]  = "ratings"
-	properties[4]  = "matches"
-	properties[5]  = "cbd"
-	properties[6]  = "events"
-
-	for(p in properties)
-	{
-		len = length(properties[p])
-
-		if(max < len)
-		{
-			max = len
-		}
-
-		numProperties++
-	}
+  statsRegex     = "Navigation\.init"
+  properties[1]  = "mailbox"
+  properties[2]  = "visitors"
+  properties[3]  = "ratings"
 }
 
 {
-	if($0 ~ statsRegex)
-	{
-		for(i = 1;i < numProperties;i++)
-		{
-			p     = properties[i]
-			regex = p"[^:]*:[^{]*\{\s*[^c]+?count[^:]+:\s*.[0-9]+"
+  if($0 ~ statsRegex)
+  {
+    for(key in properties)
+    {
+      property        = properties[key]
+      regex           = property"[^:]*:[^{]*\{\s*[^c]+?count[^:]+:\s*.[0-9]+"
 
-			if(match($0,regex))
-			{
-				str = substr($0,RSTART,RLENGTH)
-				if(match(str,/[0-9]+$/))
-				{
-					if(p ~ /^mailbox$/)
-					{
-						p = "messages"
-					}
+      if(match($0,regex))
+      {
+        str = substr($0,RSTART,RLENGTH)
+        if(match(str,/[0-9]+$/))
+        {
 
-					label = toupper(substr(p,1,1))substr(p,2)
-					value = substr(str,RSTART,RLENGTH)
-					printf "%"max"s %d\n",label,value
-				}
-			}
-		}
+          if(property ~ /^mailbox$/)
+          {
+            property = "messages"
+          }
 
-		print ""
-		FS = "<\/a>[^<]*</li>"
-		next
-	}
+          if(property ~ /^ratings$/)
+          {
+            property = "likes"
+          }
 
-	if(match($0,favoritesRegex))
-	{
-		OFS             = "\n"
-		faveNameRegex1  = "favorites_sidebar\">.+$"
-		faveNameRegex2  = "[^>]+$"
+          label = "\033[38;5;27m"toupper(substr(property,1,1))substr(property,2)"\033[0m"
+          value = substr(str,RSTART,RLENGTH)
 
-		print "ONLINE FAVORITES"
+          label_length = length(label)
 
-		for(i = 1;i < NF;i++)
-		{
-			if(match($i,faveNameRegex1))
-			{
-				str = substr($i,RSTART,RLENGTH)
+          if(max_label_length < label_length)
+          {
+            max_label_length = label_length
+          }
 
-				if(match(str,faveNameRegex2))
-				{
-					print substr(str,RSTART,RLENGTH)
-				}
-			}
-		}
-		next
-	}
+          if(value + 0 > 0)
+          {
+            value = "\033[38;5;198m"value"\033[0m"
+          }
+
+          printf "%"max_label_length"s %s\n",label,value
+        }
+      }
+    }
+
+    print ""
+    FS = "<\/a>[^<]*</li>"
+    next
+  }
 }
