@@ -1,51 +1,48 @@
-[![Build Status](https://travis-ci.org/shammellee/okcli.svg)](https://travis-ci.org/shammellee/okcli)
+[![Build Status](https://travis-ci.org/shammellee/okcli.svg)][travis_ci_url]
 
 ![okcli](src/img/okcli_logo.png)
 
-view your [okcupid][okcupidURL] stats from the command line
+View your [OkCupid][okcupid_url] stats from the command line
 
 ![screenshot](src/img/screenshot.png)
 
-* **Author** [Shammel Lee][authorURL]
+* **Author** [Shammel Lee][author_url]
 * **Start Date** Sat Aug 2 17:53:37 EDT 2014
 
 # Dependencies
-* awk (available on most unix-based machines, run `$ which awk` to test if awk is available)
-* [curl][curlURL]
+* [awk][awk_url] (available on most unix-based machines, run `$ which awk` to test if awk is available)
+* [curl][curl_url]
 
 # Building okcli
+Run the following command…
+
 ```bash
 $ make
 ```
 
-# Setting up okcli
+# Configuring okcli
+Run the following command and follow the prompts…
 
-## Setting environment variables
 ```bash
-$ export OKCLI_USER=<username>
-$ export OKCLI_PASS=<password>
-$ export OKCLI_PATH=<okcliPath> # absolute path excluding trailing forward slash
-
-# example
-$ export OKCLI_USER=okcli_user
-$ export OKCLI_PASS=volcano123
-$ export OKCLI_PATH=/Users/magneto/bin/okcli # okcli is the directory that contains the ok, okclogin, and okcstats files
+$ make config
 ```
 
-### Adding okcli to `$PATH` (optional but recommended)
-Add okcli's path to your PATH environment variable. This allows running okcli
-without having to specify okcli's path every time it is run. This should have
-the same value as the `OKCLI_PATH` environment variable.
+Then add the following line to your shell profile file…
 
 ```bash
-$ export PATH=$PATH:$OKCLI_PATH
+source ~/.okcli
+export PATH="$PATH:$OKCLI_PATH"
 ```
 
 # Running okcli
+Run the following command in a new terminal window…
+
 ```bash
 $ ok
 ```
 
-[authorURL]: https://github.com/shammellee
-[okcupidURL]: https://okcupid.com
-[curlURL]: http://curl.haxx.se
+[travis_ci_url]: https://travis-ci.org/shammellee/okcli
+[author_url]: https://github.com/shammellee
+[okcupid_url]: https://okcupid.com
+[curl_url]: http://curl.haxx.se
+[awk_url]: https://en.wikipedia.org/wiki/AWK
