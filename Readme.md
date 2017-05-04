@@ -6,7 +6,6 @@ view your [okcupid][okcupidURL] stats from the command line
 
 ![screenshot](src/img/screenshot.png)
 
-* **Organization** [Karbon Industries][companyURL]
 * **Author** [Shammel Lee][authorURL]
 * **Start Date** Sat Aug 2 17:53:37 EDT 2014
 
@@ -47,8 +46,6 @@ $ export PATH=$PATH:$OKCLI_PATH
 $ ok
 ```
 
-[companyURL]: http://karbonindustri.es
 [authorURL]: https://github.com/shammellee
 [okcupidURL]: https://okcupid.com
 [curlURL]: http://curl.haxx.se
-
