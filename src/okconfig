@@ -2,10 +2,10 @@
 
 set -e
 
-echo -e '\e[33mThis tool will create a config file to sign into OkCupid\e[39m'
-echo -n 'Enter your username: '
+echo -e 'This tool will create a config file containing your \e[38;5;15m\e[48;5;27m Ok\e[38;5;198mCupid \e[0m login credentials\e[0m'
+echo -n 'Enter your OkCupid username: '
 read _user
-echo -n 'Enter your password: '
+echo -n 'Enter your OkCupid password: '
 read -s _pass
 
 _okcli_path="$(cd "$(dirname $0)"; pwd -P)"
