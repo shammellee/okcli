@@ -2,17 +2,17 @@
 
 set -e
 
-okcliUrl='https://www.okcupid.com/login'
-cookieDir="${OKCLI_PATH}/.okcli_cookies"
+okcli_url='https://www.okcupid.com/login'
+cookie_dir="${OKCLI_PATH}/.okcli_cookies"
 cookies='cookies.txt'
 
-[ -d "$cookieDir" ] || mkdir "$cookieDir"
+[ -d "$cookie_dir" ] || mkdir "$cookie_dir"
 
-# prime cookie jar
-curl -sc ${cookieDir}/$cookies -o /dev/null $okcliUrl
+# prime the cookie jar
+curl -sc ${cookie_dir}/$cookies -o /dev/null $okcli_url
 
 # log in,  update cookie jar, and send page to okclistats
-curl -b ${cookieDir}/$cookies -c ${cookieDir}/$cookies -d 'dest=/profile?' -d "username=${OKCLI_USER}" -d "password=${OKCLI_PASS}" -Ls $okcliUrl | okstats
+curl -b ${cookie_dir}/$cookies -c ${cookie_dir}/$cookies -d 'dest=/profile?' -d "username=${OKCLI_USER}" -d "password=${OKCLI_PASS}" -Ls $okcli_url | okstats
 
 # remove empty cookie jar
-rm ${cookieDir}/$cookies
+rm ${cookie_dir}/$cookies
